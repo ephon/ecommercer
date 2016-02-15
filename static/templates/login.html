@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <br/>
+    <br/>
+    <br/>
+    <div class="row">
+        <div  class="col-md-4 col-md-offset-4">
+            <form action="#" method="POST">{% csrf_token %}
+                {{ form|crispy}}
+                <input type="submit" class="btn btn-default" value="登陆">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="color: deepskyblue;">没有帐号？</span> &nbsp;
+                <a href="{% url 'register' %}"  class="btn btn-default" > 注册</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

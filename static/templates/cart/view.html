@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class='row'>
+	<div class='col-sm-8 col-sm-offset-2'>
+
+		{% if not message %}
+		<table class='table'>
+			<thead>
+				<th>物品</th><th>价格</th><th>数量</th>
+			</thead>
+			<tbody>
+				{% for item in cart.items.all %}
+				<tr>
+					<td>{{ item.product }}</td><td>{{ item.product.price }}</td> <td><a href="{% url 'sub_qty' item.id %}"><span class="glyphicon glyphicon-minus-sign"></span></a> {{ item.quantity }} <a href="{% url 'add_qty' item.id %} "><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" ></span></a></td> <td><a href="{% url 'remove_item' item.id %}">删除</a></td>
+				</tr>
+				{% endfor %}
+				<tr><td></td><td></td><td></td><td> 总价:{{ cart.total }}</td></tr>
+			</tbody>
+		</table>
+            <a href="{% url 'checkout' %}">结算 </a>
+		{% else %}
+			<h2>{{ message }}</h2>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}
